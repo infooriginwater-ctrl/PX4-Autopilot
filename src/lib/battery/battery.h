@@ -201,6 +201,12 @@ private:
 	bool _armed{false};
 	bool _vehicle_status_is_fw{false};
 	hrt_abstime _last_unconnected_timestamp{0};
+	// Battery cycle tracking
+	uint16_t _cycle_count{0};
+	bool _battery_was_low{false};
+	void trackChargeCycle(float state_of_charge);
+	void saveCycleCount();
+	void loadCycleCount();
 
 	// Internal Resistance estimation
 	void updateInternalResistanceEstimation(const float voltage_v, const float current_a);
