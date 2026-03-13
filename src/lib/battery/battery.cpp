@@ -153,6 +153,13 @@ battery_status_s Battery::getBatteryStatus()
 	battery_status.current_a = _current_a;
 	battery_status.current_average_a = _current_average_filter_a.getState();
 	battery_status.discharged_mah = _discharged_mah;
+	battery_status.current_average_a = _current_average_filter_a.getState();
+battery_status.discharged_mah = _discharged_mah;
+
+// Add this line
+battery_status.cycle_count = (_capacity_mah > 0) ? (uint16_t)(_discharged_mah / _capacity_mah) : 0;
+
+battery_status.remaining = _state_of_charge;
 	battery_status.remaining = _state_of_charge;
 	battery_status.scale = _scale;
 	battery_status.time_remaining_s = computeRemainingTime(_current_a);
