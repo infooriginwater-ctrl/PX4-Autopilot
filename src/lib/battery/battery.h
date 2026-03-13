@@ -183,6 +183,12 @@ private:
 	uint8_t _priority{0};
 	bool _battery_initialized{false};
 	float _voltage_v{0.f};
+ 	// Battery cycle tracking
+	uint16_t _cycle_count{0};
+	bool _battery_was_low{false};
+	void trackChargeCycle(float state_of_charge);
+	void saveCycleCount();
+	void loadCycleCount();
 	AlphaFilter<float> _ocv_filter_v;
 	AlphaFilter<float> _cell_voltage_filter_v;
 	float _current_a{-1};
